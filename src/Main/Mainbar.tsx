@@ -9,7 +9,7 @@ const navigationItems = [
     { name: 'Experience', href: '#experience', icon: Briefcase },
     { name: 'Projects', href: '#projects', icon: FolderOpen },
     { name: 'Skills', href: '#skills', icon: Code },
-    { name: 'Testimonials', href: '#testimonials', icon: MessageSquare },
+//    { name: 'Testimonials', href: '#testimonials', icon: MessageSquare },
     { name: 'Contact', href: '#contact', icon: Mail },
 ]
 

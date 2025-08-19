@@ -30,7 +30,7 @@ export default function Experience() {
             institution: "Universitas Brawijaya",
             location: "Malang, Indonesia",
             period: "2022 - 2025",
-            gpa: "GPA: 3.81/4.00",
+            gpa: "GPA: 3.80/4.00",
             description: "Currently pursuing a Master's degree in Computer Science with a specialization in Artificial Intelligence and Data Science. Focused on machine learning, data mining, and image processing, with hands-on experience in developing intelligent systems and conducting data-driven research.",
             subjects: ["Machine Learning", "Data Mining", "Deep Learning", "Computer Vision", "Big Data Analytics"]
         },

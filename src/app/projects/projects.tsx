@@ -7,63 +7,85 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export default function Projects() {
     const dataScienceProjects = [
         {
-            title: "Customer Churn Prediction",
+            title: "Music Preferences in Big Cities",
             category: "Data Science",
-            period: "Jan 2025 - Feb 2025",
-            description: "Membangun model machine learning untuk memprediksi churn pelanggan pada perusahaan telekomunikasi. Analisis data, feature engineering, dan deployment model menggunakan Flask.",
-            technologies: ["Python", "scikit-learn", "Pandas", "Flask", "Heroku"],
-            github: "https://github.com/username/churn-prediction",
+            period: "January 2024",
+            description: "Explored user data from Y.Music to compare listening habits in Springfield and Shelbyville, focusing on data preprocessing and hypothesis testing to uncover differences in activity and genre preferences.",
+            technologies: ["Python", "Pandas", "Data Cleaning", "Hypothesis Testing"],
+            github: "https://github.com/fazlurihza/My-First-Project",
+            demo: null,
+            status: "Completed",
+            featured: false
+        },
+        {
+            title: "Integrated Project",
+            category: "Data Science & Analytics",
+            period: "February 2024",
+            description: "End-to-end project covering data cleaning, EDA, and hypothesis testing, delivering actionable business insights through professional analysis and reporting.",
+            technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Statistical Analysis", "Business Insights"],
+            github: "https://github.com/fazlurihza/Integrated-Projects",
+            demo: null,
+            status: "Completed",
+            featured: false
+        },
+        {
+            title: "Gold Recovery Prediction",
+            category: "Machine Learning",
+            period: "May 2024",
+            description: "Built and evaluated predictive models to estimate gold recovery efficiency in mining operations, optimizing production through data-driven insights.",
+            technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Machine Learning", "Model Evaluation"],
+            github: "https://github.com/fazlurihza/Gold-Recovery",
+            demo: null,
+            status: "Completed",
+            featured: false
+        },   
+        {
+            title: "Customer Churn Prediction – Interconnect Telecom",
+            category: "Machine Learning & Predictive Analytics",
+            period: "June 2024",
+            description: "Developed predictive models to identify customers likely to churn. Gradient Boosting achieved AUC-ROC 0.84 and Accuracy 79%, enabling actionable strategies to improve customer retention.",
+            technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Logistic Regression", "Random Forest", "Gradient Boosting", "AUC-ROC"],
+            github: "https://github.com/fazlurihza/Final-Interconnect",
             demo: null,
             status: "Completed",
             featured: true
-        },
-        {
-            title: "Sentiment Analysis Twitter",
-            category: "Natural Language Processing",
-            period: "Mar 2025 - Apr 2025",
-            description: "Analisis sentimen tweet terkait produk menggunakan NLP dan visualisasi hasil dengan dashboard interaktif.",
-            technologies: ["Python", "NLTK", "Streamlit", "Matplotlib"],
-            github: "https://github.com/username/twitter-sentiment",
-            demo: null,
-            status: "Completed",
-            featured: false
-        },
-        {
-            title: "Image Classification for Medical Diagnosis",
-            category: "Deep Learning",
-            period: "May 2025 - Jun 2025",
-            description: "Klasifikasi citra X-ray untuk deteksi penyakit paru-paru menggunakan CNN dan transfer learning.",
-            technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
-            github: "https://github.com/username/medical-image-classification",
-            demo: null,
-            status: "In Progress",
-            featured: false
         }
     ]
 
     const dataAnalysisProjects = [
         {
-            title: "Sales Data Dashboard",
-            category: "Data Analysis & Visualization",
-            period: "Jul 2025 - Aug 2025",
-            description: "Membuat dashboard interaktif untuk analisis penjualan retail menggunakan Power BI dan Python.",
-            technologies: ["Power BI", "Python", "Pandas"],
-            github: "https://github.com/username/sales-dashboard",
+            title: "Credit Scoring Analysis",
+            category: "Data Analysis",
+            period: "February 2024",
+            description: "Explored a bank loan dataset to identify factors influencing loan default, focusing on income, family status, loan purpose, and children, with hypothesis-driven analysis to uncover key risk drivers.",
+            technologies: ["Python", "Pandas", "Data Cleaning", "Exploratory Data Analysis", "Hypothesis Testing"],
+            github: "https://github.com/fazlurihza/Project-2",
+            demo: null,
+            status: "Completed",
+            featured: false
+        },
+        {
+            title: "Vehicle Price Analysis",
+            category: "Data Analysis",
+            period: "March 2024",
+            description: "Explored a vehicle dataset to uncover key factors affecting car prices, focusing on mileage, model year, and technical features through data preprocessing and exploratory analysis.",
+            technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Data Cleaning", "Exploratory Data Analysis"],
+            github: "https://github.com/fazlurihza/Project-3-vehicle-price-analysis",
+            demo: null,
+            status: "Completed",
+            featured: false
+        },
+        {
+            title: "Megaline Revenue Analysis",
+            category: "Data Analysis",
+            period: "March 2024",
+            description: "Analyzed client usage data to compare revenue between Surf and Ultimate prepaid plans, applying statistical testing to determine the more profitable plan and guide advertising strategies.",
+            technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Statistical Testing"],
+            github: "https://github.com/fazlurihza/Project-4-Megaline-analyst",
             demo: null,
             status: "Completed",
             featured: true
         },
-        {
-            title: "Exploratory Data Analysis COVID-19",
-            category: "Data Analysis",
-            period: "Sep 2024 - Oct 2024",
-            description: "Analisis data COVID-19 global, visualisasi tren kasus, dan insight menggunakan Jupyter Notebook.",
-            technologies: ["Python", "Pandas", "Matplotlib", "Seaborn"],
-            github: "https://github.com/username/covid19-eda",
-            demo: null,
-            status: "Completed",
-            featured: false
-        }
     ]
 
     const getStatusColor = (status: string) => {

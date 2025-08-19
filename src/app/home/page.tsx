@@ -65,7 +65,17 @@ export default function HeroSection() {
 
                                     <div className="flex items-center gap-2 sm:gap-3">
                                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700">
-                                            Data Scientist / Data Analyst
+                                             <TypeAnimation
+                                                sequence={[
+                                                    "Data Scientist",
+                                                    2000,
+                                                    "Data Analyst",
+                                                    2000,
+                                                ]}
+                                                wrapper="span"
+                                                speed={50}
+                                                repeat={Infinity}
+                                            />
                                         </h2>
                                     </div>
                                 </div>

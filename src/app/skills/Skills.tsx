@@ -59,7 +59,7 @@ export default function Skills() {
                         My <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Skills</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Keahlian utama saya di bidang Data Science dan Data Analysis.
+                        My core expertise in Data Science and Data Analysis.
                     </p>
                 </div>
 
