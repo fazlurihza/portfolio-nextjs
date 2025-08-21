@@ -3,6 +3,7 @@
 import React from 'react'
 import { Briefcase, GraduationCap, Award, Calendar, MapPin, Building2 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
 export default function Experience() {
     const workExperience = [
@@ -50,18 +51,46 @@ export default function Experience() {
             title: "Data Scientist Bootcamp",
             organization: "TripleTen",
             date: "June 2024",
-            description: "Completed an intensive 9-month data science program covering Python, data wrangling, SQL, machine learning (supervised & unsupervised), time series, NLP, and computer vision. Finalized with an integrated project and career success program.",
-            type: "Bootcamp"
+            description: "Completed a 9-month intensive program covering the full data science pipeline: Python, Data Wrangling, Statistical Data Analysis, SQL, Machine Learning (supervised, unsupervised, time series, NLP, computer vision), and Final Capstone Project. Developed strong foundations in both theory and hands-on projects, with career readiness training included.",
+            type: "Bootcamp",
+            certificateImage: "/F:/portofolio/public/202402DSIND000092.pdf" 
         },
         {
             title: "Fundamentals of Data Science",
-            organization: "Dicoding Indonesia",
+            organization: "Dicoding Academy",
             date: "April 2025",
-            description: "Learned core data science concepts including data types, analysis cycles, supporting tools (SQL, NoSQL, Excel, SPSS, Tableau), and basic machine learning applications. Completed course with final exam and portfolio exploration.",
-            type: "Certification"
+            description: "Mastered fundamental concepts of data science, including data types, data-driven decision making, statistical analysis, and introduction to machine learning. Learned supporting technologies and tools such as SQL, Excel, Tableau, and Python. Completed with final evaluation and case-based exercises.",
+            type: "Course",
+            certificateImage: "/F:/portofolio/public/sertifikat_course_615_3388023_290425033629.pdf"
+        },
+        {
+            title: "Career Insights in Data Analytics",
+            organization: "DQLab",
+            date: "July 2025",
+            description: "Gained exposure to the data analytics career landscape, including industry expectations, essential tools, and practical guidance for building a career path as a Data Analyst. Explored real case studies to understand the application of analytics in business decision-making.",
+            type: "Workshop",
+            certificateImage: "/F:/portofolio/public/Sertifikat_FAZLUR IHZANURAHMAN_Wawasan Karir dalam Bidang Data Analytics-1.pdf"
+        },
+        {
+            title: "Fundamental of Data Analyst",
+            organization: "DQlab",
+            date: "February 2024",
+            description: "Completed a comprehensive foundation course in data analysis covering exploratory data analysis (EDA), data cleaning, and basic visualization techniques. Learned practical skills in Python and SQL for handling structured datasets, with emphasis on real-world business problem solving.",
+            type: "Course",
+            certificateImage: "/F:/portofolio/public/Sertifikat_FAZLUR IHZANURAHMAN_Fundamental of Data Analyst.pdf"
         }
         
     ]
+
+    // Tambahkan mapping warna untuk setiap type
+    const typeColorMap: Record<string, string> = {
+        Bootcamp: "bg-blue-100 text-blue-800",
+        Course: "bg-green-100 text-green-800",
+        Workshop: "bg-yellow-100 text-yellow-800",
+        Certification: "bg-purple-100 text-purple-800",
+        Competition: "bg-pink-100 text-pink-800",
+        // tambahkan type lain jika perlu
+    }
 
     return (
         <section id="experience" className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20 bg-white" data-aos-duration="1000" data-aos="fade-down">
@@ -193,11 +222,9 @@ export default function Experience() {
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-2 mb-2">
                                                     <Award className="w-5 h-5 text-gray-800" />
-                                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                                        achievement.type === 'Competition' ? 'bg-blue-100 text-blue-800' :
-                                                        achievement.type === 'Certification' ? 'bg-green-100 text-green-800' :
-                                                        'bg-purple-100 text-purple-800'
-                                                    }`}>
+                                                    <span
+                                                        className={`px-2 py-1 rounded-full text-xs font-medium ${typeColorMap[achievement.type] || "bg-gray-200 text-gray-800"}`}
+                                                    >
                                                         {achievement.type}
                                                     </span>
                                                 </div>
@@ -212,7 +239,23 @@ export default function Experience() {
                                                 <span>{achievement.date}</span>
                                             </div>
                                         </div>
-                                        <p className="text-gray-600 leading-relaxed">{achievement.description}</p>
+                                        <p className="text-gray-600 leading-relaxed mb-4">{achievement.description}</p>
+                                        {achievement.certificateImage && (
+                                            <Dialog>
+                                                <DialogTrigger asChild>
+                                                    <button className="mt-2 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 text-sm">
+                                                        View Certificate
+                                                    </button>
+                                                </DialogTrigger>
+                                                <DialogContent className="max-w-lg">
+                                                    <img
+                                                        src={achievement.certificateImage}
+                                                        alt={`Certificate for ${achievement.title}`}
+                                                        className="w-full h-auto rounded shadow"
+                                                    />
+                                                </DialogContent>
+                                            </Dialog>
+                                        )}
                                     </div>
                                 ))}
                             </div>
