@@ -31,8 +31,8 @@ export default function Page() {
                 'service_nhfhfcl',
                 'template_fzj5bk1',
                 {
-                    from_name: contactForm.name,
-                    from_email: contactForm.email,
+                    name: contactForm.name,      // harus 'name' bukan 'from_name'
+                    email: contactForm.email,    // harus 'email' bukan 'from_email'
                     message: contactForm.message,
                 },
                 'Da7kjQoWfC9Wca4Jm'
