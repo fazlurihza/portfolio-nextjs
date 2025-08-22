@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { toast, Toaster } from 'sonner'
+import emailjs from 'emailjs-com'
 
 export default function Page() {
     const [contactForm, setContactForm] = useState({
@@ -18,18 +19,32 @@ export default function Page() {
     const [isContactDialogOpen, setIsContactDialogOpen] = useState(false)
     const [isCVDialogOpen, setIsCVDialogOpen] = useState(false)
 
-    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!contactForm.name || !contactForm.email || !contactForm.message) {
             toast.error('Please fill in all required fields')
             return
         }
 
-        toast.success('Message sent successfully!', {
-            description: `Thank you ${contactForm.name}! I'll get back to you soon.`,
-        })
-        setContactForm({ name: '', email: '', message: '' })
-        setIsContactDialogOpen(false)
+        try {
+            await emailjs.send(
+                'service_nhfhfcl',
+                'template_default',
+                {
+                    from_name: contactForm.name,
+                    from_email: contactForm.email,
+                    message: contactForm.message,
+                },
+                'a63nIhfz90mG2QL16'
+            )
+            toast.success('Message sent successfully!', {
+                description: `Thank you ${contactForm.name}! I'll get back to you soon.`,
+            })
+            setContactForm({ name: '', email: '', message: '' })
+            setIsContactDialogOpen(false)
+        } catch (error) {
+            toast.error('Failed to send message. Please try again later.')
+        }
     }
 
     const handleCVDownload = () => {
