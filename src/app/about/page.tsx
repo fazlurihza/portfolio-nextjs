@@ -29,7 +29,7 @@ export default function Page() {
         try {
             await emailjs.send(
                 'service_nhfhfcl',
-                'template_default',
+                'template_fzj5bk1',
                 {
                     from_name: contactForm.name,
                     from_email: contactForm.email,
