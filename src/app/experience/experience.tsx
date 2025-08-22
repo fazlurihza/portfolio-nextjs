@@ -3,7 +3,7 @@
 import React from 'react'
 import { Briefcase, GraduationCap, Award, Calendar, MapPin, Building2 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'
 
 export default function Experience() {
     const workExperience = [
@@ -53,7 +53,7 @@ export default function Experience() {
             date: "June 2024",
             description: "Completed a 9-month intensive program covering the full data science pipeline: Python, Data Wrangling, Statistical Data Analysis, SQL, Machine Learning (supervised, unsupervised, time series, NLP, computer vision), and Final Capstone Project. Developed strong foundations in both theory and hands-on projects, with career readiness training included.",
             type: "Bootcamp",
-            certificateImage: "/F:/portofolio/public/202402DSIND000092.pdf" 
+            certificateImage: "/202402DSIND000092.pdf"
         },
         {
             title: "Fundamentals of Data Science",
@@ -61,7 +61,7 @@ export default function Experience() {
             date: "April 2025",
             description: "Mastered fundamental concepts of data science, including data types, data-driven decision making, statistical analysis, and introduction to machine learning. Learned supporting technologies and tools such as SQL, Excel, Tableau, and Python. Completed with final evaluation and case-based exercises.",
             type: "Course",
-            certificateImage: "/F:/portofolio/public/sertifikat_course_615_3388023_290425033629.pdf"
+            certificateImage: "/sertifikat_course_615_3388023_290425033629.pdf"
         },
         {
             title: "Career Insights in Data Analytics",
@@ -69,7 +69,7 @@ export default function Experience() {
             date: "July 2025",
             description: "Gained exposure to the data analytics career landscape, including industry expectations, essential tools, and practical guidance for building a career path as a Data Analyst. Explored real case studies to understand the application of analytics in business decision-making.",
             type: "Workshop",
-            certificateImage: "/F:/portofolio/public/Sertifikat_FAZLUR IHZANURAHMAN_Wawasan Karir dalam Bidang Data Analytics-1.pdf"
+            certificateImage: "/Sertifikat_FAZLUR IHZANURAHMAN_Wawasan Karir dalam Bidang Data Analytics-1.pdf"
         },
         {
             title: "Fundamental of Data Analyst",
@@ -77,7 +77,7 @@ export default function Experience() {
             date: "February 2024",
             description: "Completed a comprehensive foundation course in data analysis covering exploratory data analysis (EDA), data cleaning, and basic visualization techniques. Learned practical skills in Python and SQL for handling structured datasets, with emphasis on real-world business problem solving.",
             type: "Course",
-            certificateImage: "/F:/portofolio/public/Sertifikat_FAZLUR IHZANURAHMAN_Fundamental of Data Analyst.pdf"
+            certificateImage: "/Sertifikat_FAZLUR IHZANURAHMAN_Fundamental of Data Analyst.pdf"
         }
         
     ]
@@ -248,10 +248,11 @@ export default function Experience() {
                                                     </button>
                                                 </DialogTrigger>
                                                 <DialogContent className="max-w-lg">
-                                                    <img
+                                                    <DialogTitle>Certificate for {achievement.title}</DialogTitle>
+                                                    <embed
                                                         src={achievement.certificateImage}
-                                                        alt={`Certificate for ${achievement.title}`}
-                                                        className="w-full h-auto rounded shadow"
+                                                        type="application/pdf"
+                                                        className="w-full h-[500px] rounded shadow"
                                                     />
                                                 </DialogContent>
                                             </Dialog>
