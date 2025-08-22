@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { toast, Toaster } from 'sonner'
+import emailjs from 'emailjs-com'
 
 export default function Contact() {
     const [contactForm, setContactForm] = useState({
@@ -55,7 +56,7 @@ export default function Contact() {
         }
     ]
 
-    const handleSubmit = (e: React.MouseEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if (!contactForm.name || !contactForm.email || !contactForm.message) {
@@ -63,16 +64,30 @@ export default function Contact() {
             return
         }
 
-        toast.success('Message sent successfully!', {
-            description: `Thank you ${contactForm.name}! I'll get back to you within 24 hours.`,
-        })
-
-        setContactForm({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-        })
+        try {
+            await emailjs.send(
+                'service_nhfhfcl', // service_id kamu
+                'template_fzj5bk1', // template_id kamu
+                {
+                    name: contactForm.name,
+                    email: contactForm.email,
+                    subject: contactForm.subject,
+                    message: contactForm.message,
+                },
+                'Da7kjQoWfC9Wca4Jm' // public key kamu
+            )
+            toast.success('Message sent successfully!', {
+                description: `Thank you ${contactForm.name}! I'll get back to you within 24 hours.`,
+            })
+            setContactForm({
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            })
+        } catch (error) {
+            toast.error('Failed to send message. Please try again later.')
+        }
     }
 
     return (
@@ -152,57 +167,59 @@ export default function Contact() {
                                     Send Me a Message
                                 </h4>
                                 <div className="space-y-4">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <Label htmlFor="contact-name">Name *</Label>
+                                                <Input
+                                                    id="contact-name"
+                                                    placeholder="Your full name"
+                                                    value={contactForm.name}
+                                                    onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="contact-email">Email *</Label>
+                                                <Input
+                                                    id="contact-email"
+                                                    type="email"
+                                                    placeholder="your@email.com"
+                                                    value={contactForm.email}
+                                                    onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                                                />
+                                            </div>
+                                        </div>
+
                                         <div className="space-y-2">
-                                            <Label htmlFor="contact-name">Name *</Label>
+                                            <Label htmlFor="contact-subject">Subject</Label>
                                             <Input
-                                                id="contact-name"
-                                                placeholder="Your full name"
-                                                value={contactForm.name}
-                                                onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                                                id="contact-subject"
+                                                placeholder="Project inquiry, collaboration, etc."
+                                                value={contactForm.subject}
+                                                onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                                             />
                                         </div>
+
                                         <div className="space-y-2">
-                                            <Label htmlFor="contact-email">Email *</Label>
-                                            <Input
-                                                id="contact-email"
-                                                type="email"
-                                                placeholder="your@email.com"
-                                                value={contactForm.email}
-                                                onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                                            <Label htmlFor="contact-message">Message *</Label>
+                                            <Textarea
+                                                id="contact-message"
+                                                placeholder="Tell me about your project, requirements, timeline, and budget..."
+                                                value={contactForm.message}
+                                                onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                                                rows={6}
+                                                
                                             />
                                         </div>
-                                    </div>
 
-                                    <div className="space-y-2">
-                                        <Label htmlFor="contact-subject">Subject</Label>
-                                        <Input
-                                            id="contact-subject"
-                                            placeholder="Project inquiry, collaboration, etc."
-                                            value={contactForm.subject}
-                                            onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="contact-message">Message *</Label>
-                                        <Textarea
-                                            id="contact-message"
-                                            placeholder="Tell me about your project, requirements, timeline, and budget..."
-                                            value={contactForm.message}
-                                            onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                                            rows={6}
-                                            
-                                        />
-                                    </div>
-
-                                    <Button
-                                        onClick={handleSubmit}
-                                        className="w-full bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 group"
-                                    >
-                                        <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform duration-200" />
-                                        Send Message
-                                    </Button>
+                                        <Button
+                                            type="submit"
+                                            className="w-full bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 group"
+                                        >
+                                            <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform duration-200" />
+                                            Send Message
+                                        </Button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

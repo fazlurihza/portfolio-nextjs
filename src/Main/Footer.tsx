@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Label } from '@/components/ui/label'
+import emailjs from 'emailjs-com'
 
 const navigationItems = [
     { name: 'Home', href: '#home', icon: Home },
@@ -49,7 +50,7 @@ export default function Footer() {
         return `${dayName}, ${day} ${month} ${year}`
     }
 
-    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!contactForm.name || !contactForm.email || !contactForm.message) {
             toast.error('Please fill in all required fields', {
@@ -58,16 +59,30 @@ export default function Footer() {
             return
         }
 
-
-        toast.success('Message sent successfully!', {
-            description: `Thank you ${contactForm.name}! I'll get back to you soon at ${contactForm.email}.`,
-            action: {
-                label: 'Close',
-                onClick: () => console.log('Message acknowledged'),
-            },
-        })
-        setContactForm({ name: '', email: '', subject: '', message: '' })
-        setIsContactDialogOpen(false)
+        try {
+            await emailjs.send(
+                'service_nhfhfcl', // service_id kamu
+                'template_fzj5bk1', // template_id kamu
+                {
+                    name: contactForm.name,
+                    email: contactForm.email,
+                    subject: contactForm.subject,
+                    message: contactForm.message,
+                },
+                'Da7kjQoWfC9Wca4Jm' // public key kamu
+            )
+            toast.success('Message sent successfully!', {
+                description: `Thank you ${contactForm.name}! I'll get back to you soon at ${contactForm.email}.`,
+                action: {
+                    label: 'Close',
+                    onClick: () => console.log('Message acknowledged'),
+                },
+            })
+            setContactForm({ name: '', email: '', subject: '', message: '' })
+            setIsContactDialogOpen(false)
+        } catch (error) {
+            toast.error('Failed to send message. Please try again later.')
+        }
     }
 
     const handleSubscriptionSubmit = (e: React.FormEvent<HTMLFormElement>) => {

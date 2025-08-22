@@ -12,6 +12,7 @@ import { toast, Toaster } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { TypeAnimation } from 'react-type-animation'
 import Image from "next/image"
+import emailjs from 'emailjs-com'
 
 const socialLinks = [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/fazlurihza', icon: Linkedin, color: 'hover:text-blue-600' },
@@ -28,18 +29,32 @@ export default function HeroSection() {
     })
     const [isContactDialogOpen, setIsContactDialogOpen] = useState(false)
 
-    const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!contactForm.name || !contactForm.email || !contactForm.message) {
             toast.error('Please fill in all required fields')
             return
         }
 
-        toast.success('Message sent successfully!', {
-            description: `Thank you ${contactForm.name}! I'll get back to you soon.`,
-        })
-        setContactForm({ name: '', email: '', message: '' })
-        setIsContactDialogOpen(false)
+        try {
+            await emailjs.send(
+                'service_nhfhfcl', // service_id kamu
+                'template_fzj5bk1', // template_id kamu
+                {
+                    name: contactForm.name,      // pastikan sama dengan variabel di template EmailJS
+                    email: contactForm.email,
+                    message: contactForm.message,
+                },
+                'Da7kjQoWfC9Wca4Jm' // public key kamu
+            )
+            toast.success('Message sent successfully!', {
+                description: `Thank you ${contactForm.name}! I'll get back to you soon.`,
+            })
+            setContactForm({ name: '', email: '', message: '' })
+            setIsContactDialogOpen(false)
+        } catch (error) {
+            toast.error('Failed to send message. Please try again later.')
+        }
     }
 
     return (
